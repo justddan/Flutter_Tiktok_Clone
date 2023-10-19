@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
 class EmailScreen extends StatefulWidget {
   const EmailScreen({super.key});
@@ -11,6 +12,25 @@ class EmailScreen extends StatefulWidget {
 }
 
 class _EmailScreenState extends State<EmailScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  String _email = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController.addListener(() {
+      setState(() {
+        _email = _emailController.text;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,20 +48,15 @@ class _EmailScreenState extends State<EmailScreen> {
           children: [
             Gaps.v40,
             const AppFont(
-              "Create username",
+              "What is you email?",
               size: Sizes.size24,
               fontWeight: FontWeight.w700,
             ),
-            Gaps.v8,
-            const AppFont(
-              "You can always change this later.",
-              size: Sizes.size16,
-              color: Colors.black54,
-            ),
             Gaps.v16,
             TextField(
+              controller: _emailController,
               decoration: InputDecoration(
-                hintText: "Username",
+                hintText: "Email",
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.grey.shade400,
@@ -56,23 +71,7 @@ class _EmailScreenState extends State<EmailScreen> {
               cursorColor: Theme.of(context).primaryColor,
             ),
             Gaps.v16,
-            FractionallySizedBox(
-              widthFactor: 1,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: Sizes.size16,
-                ),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                ),
-                child: const AppFont(
-                  "Next",
-                  textAlign: TextAlign.center,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            )
+            FormButton(disabled: _email.isEmpty)
           ],
         ),
       ),
