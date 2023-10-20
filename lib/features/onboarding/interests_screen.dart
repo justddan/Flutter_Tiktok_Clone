@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/onboarding/tutorial_screen.dart';
 import 'package:tiktok_clone/features/onboarding/widgets/interest_button.dart';
 
 const interests = [
@@ -82,6 +83,15 @@ class _InterestsScreenState extends State<InterestsScreen> {
     _scrollController.dispose();
   }
 
+  void _onNextTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const TutorialScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,16 +148,19 @@ class _InterestsScreenState extends State<InterestsScreen> {
             left: Sizes.size24,
             right: Sizes.size24,
           ),
-          child: Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: Sizes.size20,
-            ),
-            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-            child: const AppFont(
-              "Next",
-              color: Colors.white,
-              size: Sizes.size16,
-              textAlign: TextAlign.center,
+          child: GestureDetector(
+            onTap: _onNextTap,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: Sizes.size20,
+              ),
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+              child: const AppFont(
+                "Next",
+                color: Colors.white,
+                size: Sizes.size16,
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ),
