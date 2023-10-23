@@ -9,7 +9,7 @@ class VideoTimelineScreen extends StatefulWidget {
 }
 
 class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
-  final int _itemCount = 4;
+  int _itemCount = 4;
 
   final PageController _pageController = PageController();
 
@@ -35,16 +35,16 @@ class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
       duration: _scrollDuration,
       curve: _scrollCurve,
     );
-    // if (page == _itemCount - 1) {
-    //   _itemCount = _itemCount + 4;
-    //   colors.addAll([
-    //     Colors.blue,
-    //     Colors.red,
-    //     Colors.yellow,
-    //     Colors.green,
-    //   ]);
-    //   setState(() {});
-    // }
+    if (page == _itemCount - 1) {
+      _itemCount = _itemCount + 4;
+      colors.addAll([
+        Colors.blue,
+        Colors.red,
+        Colors.yellow,
+        Colors.green,
+      ]);
+      setState(() {});
+    }
   }
 
   void _onVideoFinished() {
@@ -61,6 +61,7 @@ class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
       itemCount: _itemCount,
       itemBuilder: (context, index) => VideoPost(
         onVideoFinished: _onVideoFinished,
+        index: index,
       ),
       onPageChanged: _onPageChanged,
       scrollDirection: Axis.vertical,
