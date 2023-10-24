@@ -14,6 +14,8 @@ class VideoComments extends StatefulWidget {
 class _VideoCommentsState extends State<VideoComments> {
   bool _isWriting = false;
 
+  final ScrollController _scrollController = ScrollController();
+
   void _onClosePressed() {
     Navigator.of(context).pop();
   }
@@ -56,56 +58,62 @@ class _VideoCommentsState extends State<VideoComments> {
           onTap: _stopWriting,
           child: Stack(
             children: [
-              ListView.separated(
-                padding: const EdgeInsets.symmetric(
-                  vertical: Sizes.size10,
-                  horizontal: Sizes.size16,
-                ),
-                itemCount: 10,
-                separatorBuilder: (context, index) => Gaps.v20,
-                itemBuilder: (context, index) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const CircleAvatar(
-                        radius: 18,
-                        child: Text("니꼬"),
-                      ),
-                      Gaps.h10,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+              Scrollbar(
+                controller: _scrollController,
+                child: ListView.separated(
+                  controller: _scrollController,
+                  padding: const EdgeInsets.only(
+                    top: Sizes.size10,
+                    bottom: Sizes.size96 + Sizes.size20,
+                    left: Sizes.size16,
+                    right: Sizes.size16,
+                  ),
+                  itemCount: 10,
+                  separatorBuilder: (context, index) => Gaps.v20,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const CircleAvatar(
+                          radius: 18,
+                          child: Text("니꼬"),
+                        ),
+                        Gaps.h10,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AppFont(
+                                "니꼬",
+                                fontWeight: FontWeight.bold,
+                                size: Sizes.size14,
+                                color: Colors.grey.shade500,
+                              ),
+                              Gaps.v3,
+                              const AppFont(
+                                  "That's not it l've seen the same thing but also in a cave")
+                            ],
+                          ),
+                        ),
+                        Gaps.h10,
+                        Column(
                           children: [
-                            AppFont(
-                              "니꼬",
-                              fontWeight: FontWeight.bold,
-                              size: Sizes.size14,
+                            FaIcon(
+                              FontAwesomeIcons.heart,
+                              size: Sizes.size20,
                               color: Colors.grey.shade500,
                             ),
-                            Gaps.v3,
-                            const AppFont(
-                                "That's not it l've seen the same thing but also in a cave")
+                            Gaps.v2,
+                            AppFont(
+                              "52.2K",
+                              color: Colors.grey.shade500,
+                            )
                           ],
                         ),
-                      ),
-                      Gaps.h10,
-                      Column(
-                        children: [
-                          FaIcon(
-                            FontAwesomeIcons.heart,
-                            size: Sizes.size20,
-                            color: Colors.grey.shade500,
-                          ),
-                          Gaps.v2,
-                          AppFont(
-                            "52.2K",
-                            color: Colors.grey.shade500,
-                          )
-                        ],
-                      ),
-                    ],
-                  );
-                },
+                      ],
+                    );
+                  },
+                ),
               ),
               Positioned(
                 bottom: 0,
