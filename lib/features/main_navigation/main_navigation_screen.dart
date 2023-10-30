@@ -19,21 +19,23 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _selectedIndex = 4;
 
-  /*final screens = [
-    const Center(
-      child: AppFont("Home"),
-    ),
-    const Center(
-      child: AppFont("Discover"),
-    ),
-    Container(),
-    const Center(
-      child: AppFont("Inbox"),
-    ),
-    const Center(
-      child: AppFont("Profile"),
-    ),
-  ];*/
+  // final screens = [
+  //   const Center(
+  //     child: Text("Home"),
+  //   ),
+  //   const Center(
+  //     child: Text("Search"),
+  //   ),
+  //   const Center(
+  //     child: Text("Premium"),
+  //   ),
+  //   const Center(
+  //     child: Text("Chat"),
+  //   ),
+  //   const Center(
+  //     child: Text("Profile"),
+  //   ),
+  // ];
 
   void _onTap(int index) {
     setState(() {
@@ -74,9 +76,9 @@ class _MainNavigationState extends State<MainNavigation> {
     );
     */
     return Scaffold(
+      // body: screens[_selectedIndex],
       backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
       resizeToAvoidBottomInset: false,
-      // body: screens[_selectedIndex],
       body: Stack(
         children: [
           Offstage(
@@ -148,8 +150,10 @@ class _MainNavigationState extends State<MainNavigation> {
           ),
         ),
       ),
-      /*bottomNavigationBar: NavigationBar(
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+
+      /*
+      bottomNavigationBar: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         selectedIndex: _selectedIndex,
         onDestinationSelected: _onTap,
         destinations: const [
@@ -163,28 +167,30 @@ class _MainNavigationState extends State<MainNavigation> {
           NavigationDestination(
             icon: FaIcon(
               FontAwesomeIcons.magnifyingGlass,
-              color: Colors.amber,
+              color: Colors.blue,
             ),
             label: "Search",
           ),
-        ],
-      ),
-      */
-      /*
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onTap,
-        selectedItemColor: Theme.of(context).primaryColor,
-        items: const [
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.house),
-            label: "Home",
-            tooltip: "What are you?",
+          NavigationDestination(
+            icon: FaIcon(
+              FontAwesomeIcons.star,
+              color: Colors.amber,
+            ),
+            label: "Premium",
           ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-            label: "Search",
-            tooltip: "What are you?",
+          NavigationDestination(
+            icon: FaIcon(
+              FontAwesomeIcons.message,
+              color: Colors.red,
+            ),
+            label: "Chat",
+          ),
+          NavigationDestination(
+            icon: FaIcon(
+              FontAwesomeIcons.user,
+              color: Colors.cyan,
+            ),
+            label: "Profile",
           ),
         ],
       ),
