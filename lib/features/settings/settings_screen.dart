@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -89,6 +88,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: const Text("Enable notifications"),
           ),
           */
+          /*
           ListTile(
             title: const Text("Log out (iOS)"),
             textColor: Colors.red,
@@ -132,6 +132,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onPressed: () => Navigator.of(context).pop(),
                       child: const Text("Yes"),
                     ),
+                  ],
+                ),
+              );
+            },
+          ),
+          */
+          ListTile(
+            title: const Text("Log out (iOS / Bottom)"),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) => CupertinoActionSheet(
+                  title: const Text("Are you sure?"),
+                  message: const Text("Please dooooont gooooo"),
+                  actions: [
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("Not log out"),
+                    ),
+                    CupertinoActionSheetAction(
+                      isDestructiveAction: true,
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("Yes plz."),
+                    )
                   ],
                 ),
               );
