@@ -19,24 +19,6 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _selectedIndex = 4;
 
-  // final screens = [
-  //   const Center(
-  //     child: Text("Home"),
-  //   ),
-  //   const Center(
-  //     child: Text("Search"),
-  //   ),
-  //   const Center(
-  //     child: Text("Premium"),
-  //   ),
-  //   const Center(
-  //     child: Text("Chat"),
-  //   ),
-  //   const Center(
-  //     child: Text("Profile"),
-  //   ),
-  // ];
-
   void _onTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -56,27 +38,7 @@ class _MainNavigationState extends State<MainNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    // cupertinoapp으로 변경
-    /*return CupertinoTabScaffold(
-      tabBar: CupertinoTabBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: FaIcon(CupertinoIcons.house),
-            label: "Home",
-            tooltip: "What are you?",
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(CupertinoIcons.search),
-            label: "Search",
-            tooltip: "What are you?",
-          ),
-        ],
-      ),
-      tabBuilder: (context, index) => screens[index],
-    );
-    */
     return Scaffold(
-      // body: screens[_selectedIndex],
       backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
       resizeToAvoidBottomInset: false,
       body: Stack(
@@ -150,51 +112,6 @@ class _MainNavigationState extends State<MainNavigation> {
           ),
         ),
       ),
-
-      /*
-      bottomNavigationBar: NavigationBar(
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-        selectedIndex: _selectedIndex,
-        onDestinationSelected: _onTap,
-        destinations: const [
-          NavigationDestination(
-            icon: FaIcon(
-              FontAwesomeIcons.house,
-              color: Colors.teal,
-            ),
-            label: "Home",
-          ),
-          NavigationDestination(
-            icon: FaIcon(
-              FontAwesomeIcons.magnifyingGlass,
-              color: Colors.blue,
-            ),
-            label: "Search",
-          ),
-          NavigationDestination(
-            icon: FaIcon(
-              FontAwesomeIcons.star,
-              color: Colors.amber,
-            ),
-            label: "Premium",
-          ),
-          NavigationDestination(
-            icon: FaIcon(
-              FontAwesomeIcons.message,
-              color: Colors.red,
-            ),
-            label: "Chat",
-          ),
-          NavigationDestination(
-            icon: FaIcon(
-              FontAwesomeIcons.user,
-              color: Colors.cyan,
-            ),
-            label: "Profile",
-          ),
-        ],
-      ),
-      */
     );
   }
 }

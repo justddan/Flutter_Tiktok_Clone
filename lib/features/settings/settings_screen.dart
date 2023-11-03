@@ -9,6 +9,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  /*
   bool _notification = false;
 
   void _onNotificationChanged(bool? newValue) {
@@ -17,6 +18,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _notification = newValue;
     });
   }
+  */
 
   @override
   Widget build(BuildContext context) {
