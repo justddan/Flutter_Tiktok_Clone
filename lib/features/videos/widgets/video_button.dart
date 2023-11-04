@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
@@ -23,10 +22,12 @@ class VideoButton extends StatelessWidget {
           size: Sizes.size40,
         ),
         Gaps.v5,
-        AppFont(
+        Text(
           text,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ],
     );

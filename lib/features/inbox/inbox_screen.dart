@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/inbox/activity_screen.dart';
 import 'package:tiktok_clone/features/inbox/chats_screen.dart';
@@ -49,10 +48,12 @@ class _InboxScreenState extends State<InboxScreen> {
         children: [
           ListTile(
             onTap: _onActivityTap,
-            title: const AppFont(
+            title: const Text(
               "Activity",
-              fontWeight: FontWeight.w600,
-              size: Sizes.size16,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: Sizes.size16,
+              ),
             ),
             trailing: const FaIcon(
               FontAwesomeIcons.chevronRight,
@@ -78,10 +79,12 @@ class _InboxScreenState extends State<InboxScreen> {
                 ),
               ),
             ),
-            title: const AppFont(
+            title: const Text(
               "New followers",
-              fontWeight: FontWeight.w600,
-              size: Sizes.size16,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: Sizes.size16,
+              ),
             ),
             subtitle: const Text(
               "Message from followers will appear here",

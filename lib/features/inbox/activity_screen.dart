@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
@@ -114,10 +113,12 @@ class _ActivityScreenState extends State<ActivityScreen>
                 padding: const EdgeInsets.symmetric(
                   horizontal: Sizes.size12,
                 ),
-                child: AppFont(
+                child: Text(
                   "New",
-                  size: Sizes.size14,
-                  color: Colors.grey.shade500,
+                  style: TextStyle(
+                    fontSize: Sizes.size14,
+                    color: Colors.grey.shade500,
+                  ),
                 ),
               ),
               Gaps.v14,
@@ -234,9 +235,11 @@ class _ActivityScreenState extends State<ActivityScreen>
                             size: Sizes.size16,
                           ),
                           Gaps.h20,
-                          AppFont(
+                          Text(
                             tab["title"],
-                            fontWeight: FontWeight.bold,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),

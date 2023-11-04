@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
 class InterestButton extends StatefulWidget {
@@ -45,10 +44,12 @@ class _InterestButtonState extends State<InterestButton> {
             )
           ],
         ),
-        child: AppFont(
+        child: Text(
           widget.interest,
-          fontWeight: FontWeight.bold,
-          color: _isSelected ? Colors.white : Colors.black87,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: _isSelected ? Colors.white : Colors.black87,
+          ),
         ),
       ),
     );

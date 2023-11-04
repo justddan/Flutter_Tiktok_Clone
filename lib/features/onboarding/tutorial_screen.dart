@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
@@ -69,15 +68,19 @@ class _TutorialScreenState extends State<TutorialScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gaps.v80,
-                  AppFont(
+                  Text(
                     "Watch cool videos!",
-                    size: Sizes.size40,
-                    fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: Sizes.size40,
+                    ),
                   ),
                   Gaps.v16,
-                  AppFont(
+                  Text(
                     "Videos are personalized for you based on what you watch, like, and share.",
-                    size: Sizes.size20,
+                    style: TextStyle(
+                      fontSize: Sizes.size20,
+                    ),
                   )
                 ],
               ),
@@ -85,15 +88,19 @@ class _TutorialScreenState extends State<TutorialScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gaps.v80,
-                  AppFont(
+                  Text(
                     "Follow the rules!",
-                    size: Sizes.size40,
-                    fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: Sizes.size40,
+                    ),
                   ),
                   Gaps.v16,
-                  AppFont(
+                  Text(
                     "Videos are personalized for you based on what you watch, like, and share.",
-                    size: Sizes.size20,
+                    style: TextStyle(
+                      fontSize: Sizes.size20,
+                    ),
                   )
                 ],
               ),
@@ -136,15 +143,19 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Gaps.v52,
-                    AppFont(
+                    Text(
                       "Watch cool videos!",
-                      size: Sizes.size40,
-                      fontWeight: FontWeight.bold,
+                      style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: Sizes.size40,
+              ),
                     ),
                     Gaps.v16,
-                    AppFont(
+                    Text(
                       "Videos are personalized for you based on what you watch, like, and share.",
-                      size: Sizes.size20,
+                      style: TextStyle(
+                fontSize: Sizes.size20,
+              ),
                     )
                   ],
                 ),
@@ -157,15 +168,19 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Gaps.v52,
-                    AppFont(
+                    Text(
                       "Follow the rules!",
-                      size: Sizes.size40,
-                      fontWeight: FontWeight.bold,
+                      style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: Sizes.size40,
+              ),
                     ),
                     Gaps.v16,
-                    AppFont(
+                    Text(
                       "Videos are personalized for you based on what you watch, like, and share.",
-                      size: Sizes.size20,
+                      style: TextStyle(
+                fontSize: Sizes.size20,
+              ),
                     )
                   ],
                 ),
@@ -178,15 +193,19 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Gaps.v52,
-                    AppFont(
+                    Text(
                       "Enjoy the ride!",
-                      size: Sizes.size40,
-                      fontWeight: FontWeight.bold,
+                      style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: Sizes.size40,
+              ),
                     ),
                     Gaps.v16,
-                    AppFont(
+                    Text(
                       "Videos are personalized for you based on what you watch, like, and share.",
-                      size: Sizes.size20,
+                      style: TextStyle(
+                fontSize: Sizes.size20,
+              ),
                     )
                   ],
                 ),

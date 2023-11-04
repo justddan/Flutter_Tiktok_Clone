@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
 class AuthButton extends StatelessWidget {
@@ -33,10 +32,12 @@ class AuthButton extends StatelessWidget {
               child: icon,
             ),
             Expanded(
-              child: AppFont(
+              child: Text(
                 text,
-                size: Sizes.size16,
-                fontWeight: FontWeight.w600,
+                style: const TextStyle(
+                  fontSize: Sizes.size16,
+                  fontWeight: FontWeight.w600,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),

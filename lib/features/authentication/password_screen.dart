@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/birthday_screen.dart';
@@ -81,10 +80,12 @@ class _PasswordScreenState extends State<PasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.v40,
-              const AppFont(
+              const Text(
                 "Password",
-                size: Sizes.size24,
-                fontWeight: FontWeight.w700,
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               Gaps.v16,
               TextField(
@@ -132,9 +133,11 @@ class _PasswordScreenState extends State<PasswordScreen> {
                 cursorColor: Theme.of(context).primaryColor,
               ),
               Gaps.v10,
-              const AppFont(
+              const Text(
                 "Your password must have",
-                fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Gaps.v10,
               Row(
@@ -147,7 +150,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                         : Colors.grey.shade400,
                   ),
                   Gaps.h5,
-                  const AppFont("8 to 20 characters"),
+                  const Text("8 to 20 characters"),
                 ],
               ),
               Gaps.v28,

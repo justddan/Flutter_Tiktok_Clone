@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
@@ -83,14 +82,16 @@ class _VideoCommentsState extends State<VideoComments> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              AppFont(
+                              Text(
                                 "니꼬",
-                                fontWeight: FontWeight.bold,
-                                size: Sizes.size14,
-                                color: Colors.grey.shade500,
+                                style: TextStyle(
+                                  fontSize: Sizes.size14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey.shade500,
+                                ),
                               ),
                               Gaps.v3,
-                              const AppFont(
+                              const Text(
                                   "That's not it l've seen the same thing but also in a cave")
                             ],
                           ),
@@ -104,9 +105,11 @@ class _VideoCommentsState extends State<VideoComments> {
                               color: Colors.grey.shade500,
                             ),
                             Gaps.v2,
-                            AppFont(
+                            Text(
                               "52.2K",
-                              color: Colors.grey.shade500,
+                              style: TextStyle(
+                                color: Colors.grey.shade500,
+                              ),
                             )
                           ],
                         ),

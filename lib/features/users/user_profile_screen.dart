@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/settings/settings_screen.dart';
@@ -156,11 +155,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           borderRadius: const BorderRadius.all(
                               Radius.circular(Sizes.size4)),
                         ),
-                        child: const AppFont(
+                        child: const Text(
                           "Follow",
-                          color: Colors.white,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                           textAlign: TextAlign.center,
-                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -169,7 +170,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       padding: EdgeInsets.symmetric(
                         horizontal: Sizes.size32,
                       ),
-                      child: AppFont(
+                      child: Text(
                         "All highlights and where to watch live matches on FIFA+ I wonder how it would loook",
                         textAlign: TextAlign.center,
                       ),
@@ -183,9 +184,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           size: Sizes.size12,
                         ),
                         Gaps.h4,
-                        AppFont(
+                        Text(
                           "https://nomadcoders.co",
-                          fontWeight: FontWeight.w600,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
@@ -229,7 +232,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 },
               ),
               const Center(
-                child: AppFont("Page Two"),
+                child: Text("Page Two"),
               )
             ],
           ),
@@ -317,9 +320,11 @@ class CustomDelegate extends SliverPersistentHeaderDelegate {
       child: const FractionallySizedBox(
         heightFactor: 1,
         child: Center(
-          child: AppFont(
+          child: Text(
             "Title!!!!!!",
-            color: Colors.white,
+            style: TextStyle(
+                            color: Colors.white,
+                          ),
           ),
         ),
       ),

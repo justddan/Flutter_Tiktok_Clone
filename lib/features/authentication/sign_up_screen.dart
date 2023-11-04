@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
@@ -34,16 +33,20 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Gaps.v80,
-                  const AppFont(
+                  const Text(
                     "Sign up for TikTok",
-                    size: Sizes.size24,
-                    fontWeight: FontWeight.w700,
+                    style: TextStyle(
+                      fontSize: Sizes.size24,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   Gaps.v20,
-                  const AppFont(
+                  const Text(
                     "Create a profile, follow other accounts, make your own videos, and more.",
-                    size: Sizes.size16,
-                    color: Colors.black45,
+                    style: TextStyle(
+                      fontSize: Sizes.size16,
+                      color: Colors.black45,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   Gaps.v40,
@@ -96,17 +99,21 @@ class SignUpScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const AppFont(
+                  const Text(
                     "Already have an account?",
-                    size: 16,
+                    style: TextStyle(
+                      fontSize: Sizes.size16,
+                    ),
                   ),
                   Gaps.h5,
                   GestureDetector(
                     onTap: () => _onLoginTap(context),
-                    child: AppFont(
+                    child: Text(
                       "Log in",
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w600,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],

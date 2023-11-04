@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/onboarding/tutorial_screen.dart';
@@ -115,15 +114,19 @@ class _InterestsScreenState extends State<InterestsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Gaps.v32,
-                const AppFont(
+                const Text(
                   "Choose your interests",
-                  size: Sizes.size40,
-                  fontWeight: FontWeight.bold,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: Sizes.size40,
+                  ),
                 ),
                 Gaps.v20,
-                const AppFont(
+                const Text(
                   "Get better video recommendations",
-                  size: Sizes.size20,
+                  style: TextStyle(
+                    fontSize: Sizes.size20,
+                  ),
                 ),
                 Gaps.v64,
                 Wrap(
@@ -155,10 +158,12 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 vertical: Sizes.size20,
               ),
               decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-              child: const AppFont(
+              child: const Text(
                 "Next",
-                color: Colors.white,
-                size: Sizes.size16,
+                style: TextStyle(
+                  fontSize: Sizes.size16,
+                  color: Colors.white,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),

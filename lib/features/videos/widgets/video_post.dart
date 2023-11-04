@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
@@ -159,17 +158,21 @@ class _VideoPostState extends State<VideoPost>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppFont(
+                Text(
                   "@니꼬",
-                  size: Sizes.size20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                  style: TextStyle(
+                    fontSize: Sizes.size20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
                 Gaps.v10,
-                AppFont(
+                Text(
                   "This is my dog in my knee!!!",
-                  size: Sizes.size16,
-                  color: Colors.white,
+                  style: TextStyle(
+                    fontSize: Sizes.size16,
+                    color: Colors.white,
+                  ),
                 )
               ],
             ),

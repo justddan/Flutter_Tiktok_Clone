@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/breakpoints.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
@@ -115,11 +114,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       ),
                     ),
                     Gaps.v10,
-                    const AppFont(
+                    const Text(
                       "This is a very long caption for my tiktok tha im upload just now currently.",
-                      size: Sizes.size16,
-                      fontWeight: FontWeight.bold,
-                      maxLine: 2,
+                      style: TextStyle(
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Gaps.v8,
@@ -133,12 +134,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                         Gaps.h4,
                         Expanded(
-                          child: AppFont(
+                          child: Text(
                             "My avatar is going to be very long",
-                            maxLine: 1,
+                            maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            color: Colors.grey.shade600,
-                            fontWeight: FontWeight.bold,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade600,
+                            ),
                           ),
                         ),
                         Gaps.h4,
@@ -148,10 +151,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           color: Colors.grey.shade600,
                         ),
                         Gaps.h2,
-                        AppFont(
+                        Text(
                           "2.5M",
-                          color: Colors.grey.shade600,
-                          fontWeight: FontWeight.bold,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       ],
                     )
@@ -161,9 +166,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             ),
             for (var tab in tabs.skip(1))
               Center(
-                child: AppFont(
+                child: Text(
                   tab,
-                  size: 28,
+                  style: const TextStyle(
+                    fontSize: Sizes.size28,
+                  ),
                 ),
               )
           ],

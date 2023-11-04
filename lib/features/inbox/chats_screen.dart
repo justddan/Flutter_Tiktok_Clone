@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/inbox/chat_detail_screen.dart';
 
@@ -64,14 +63,18 @@ class _ChatsScreenState extends State<ChatsScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          AppFont(
+          Text(
             "Lynn ($index)",
-            fontWeight: FontWeight.w600,
+            style: TextStyle(
+              color: Colors.grey.shade600,
+            ),
           ),
-          AppFont(
+          Text(
             "2:16 PM",
-            color: Colors.grey.shade500,
-            size: Sizes.size12,
+            style: TextStyle(
+              fontSize: Sizes.size12,
+              color: Colors.grey.shade500,
+            ),
           )
         ],
       ),

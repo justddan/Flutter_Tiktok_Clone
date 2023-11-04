@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
@@ -67,16 +66,20 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.v40,
-              const AppFont(
+              const Text(
                 "When is your birthday?",
-                size: Sizes.size24,
-                fontWeight: FontWeight.w700,
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               Gaps.v8,
-              const AppFont(
+              const Text(
                 "Your birthday won't be shown publicly.",
-                size: Sizes.size16,
-                color: Colors.black54,
+                style: TextStyle(
+                  fontSize: Sizes.size16,
+                  color: Colors.black54,
+                ),
               ),
               Gaps.v16,
               TextField(

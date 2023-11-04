@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_form_screen.dart';
@@ -28,16 +27,20 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               Gaps.v80,
-              const AppFont(
+              const Text(
                 "Log in to TikTok",
-                size: Sizes.size24,
-                fontWeight: FontWeight.w700,
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               Gaps.v20,
-              const AppFont(
+              const Text(
                 "Manage your account, check notifications, comment on videos, and more.",
-                size: Sizes.size16,
-                color: Colors.black45,
+                style: TextStyle(
+                  fontSize: Sizes.size16,
+                  color: Colors.black45,
+                ),
                 textAlign: TextAlign.center,
               ),
               Gaps.v40,
@@ -67,17 +70,21 @@ class LoginScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const AppFont(
+              const Text(
                 "Don't have an account?",
-                size: 16,
+                style: TextStyle(
+                  fontSize: Sizes.size16,
+                ),
               ),
               Gaps.h5,
               GestureDetector(
                 onTap: () => _onSignUpTap(context),
-                child: AppFont(
+                child: Text(
                   "Sign up",
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.w600,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ],

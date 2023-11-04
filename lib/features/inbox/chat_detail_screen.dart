@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
@@ -78,10 +77,12 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                         ),
                       ),
                     ),
-                    child: const AppFont(
+                    child: const Text(
                       "This is a message",
-                      color: Colors.white,
-                      size: Sizes.size16,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: Sizes.size16,
+                      ),
                     ),
                   ),
                 ],

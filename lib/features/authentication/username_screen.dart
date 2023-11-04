@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/common/widgets/views/app_font.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/email_screen.dart';
@@ -61,16 +60,20 @@ class _UsernameScreenState extends State<UsernameScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gaps.v40,
-              const AppFont(
+              const Text(
                 "Create username",
-                size: Sizes.size24,
-                fontWeight: FontWeight.w700,
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               Gaps.v8,
-              const AppFont(
+              const Text(
                 "You can always change this later.",
-                size: Sizes.size16,
-                color: Colors.black54,
+                style: TextStyle(
+                  fontSize: Sizes.size16,
+                  color: Colors.black54,
+                ),
               ),
               Gaps.v16,
               TextField(
