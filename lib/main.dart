@@ -110,3 +110,6 @@ class LayoutBuilderCodeLab extends StatelessWidget {
   }
 }
 */
+
+// google_fonts 사이트
+// https://m2.material.io/design/typography/the-type-system.html#type-scale Type Scale Generator
