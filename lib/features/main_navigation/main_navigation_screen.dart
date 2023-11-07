@@ -30,7 +30,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => Scaffold(
-          appBar: AppBar(title: const Text("Record Video")),
+          appBar: AppBar(title: const Text('Record video')),
         ),
         fullscreenDialog: true,
       ),
@@ -41,9 +41,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget build(BuildContext context) {
     final isDark = isDarkMode(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor:
           _selectedIndex == 0 || isDark ? Colors.black : Colors.white,
-      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Offstage(
@@ -61,11 +61,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           Offstage(
             offstage: _selectedIndex != 4,
             child: const UserProfileScreen(),
-          ),
+          )
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: Container(
         color: _selectedIndex == 0 || isDark ? Colors.black : Colors.white,
+        padding: const EdgeInsets.only(
+          bottom: Sizes.size32,
+        ),
         child: Padding(
           padding: const EdgeInsets.all(Sizes.size12),
           child: Row(
@@ -90,9 +93,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               Gaps.h24,
               GestureDetector(
                 onTap: _onPostVideoButtonTap,
-                child: PostVideoButton(
-                  inverted: _selectedIndex != 0,
-                ),
+                child: PostVideoButton(inverted: _selectedIndex != 0),
               ),
               Gaps.h24,
               NavTab(
