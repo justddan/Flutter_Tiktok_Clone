@@ -45,7 +45,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final isDark = isDarkMode(context);
-    print("isDark: $isDark");
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
