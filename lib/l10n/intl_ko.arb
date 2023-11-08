@@ -1,6 +1,9 @@
 {
-  "signUpTitle": "{nameOfTheApp}에 가입하세요",
+  "signUpTitle": "{nameOfTheApp}에 가입하세요 {when}",
   "loginTitle": "{nameOfTheApp}에 로그인하세요",
   "signUpSubtitle": "Create a profile, follow other accounts, make your own videos, and more.",
-  "logIn": "Log in"
+  "logIn": "Log in",
+  "likeCount": "{potato}",
+  "commentCount": "{potato}",
+  "commentTitle": "{value} {value2, plural, =1{comment} other{comments}}"
 }

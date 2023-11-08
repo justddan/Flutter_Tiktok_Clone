@@ -50,13 +50,13 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Sign up for {nameOfTheApp}`
-  String signUpTitle(String nameOfTheApp) {
+  /// `Sign up for {nameOfTheApp} {when}`
+  String signUpTitle(String nameOfTheApp, Object when) {
     return Intl.message(
-      'Sign up for $nameOfTheApp',
+      'Sign up for $nameOfTheApp $when',
       name: 'signUpTitle',
       desc: 'The title people see when they open the app for the first time.',
-      args: [nameOfTheApp],
+      args: [nameOfTheApp, when],
     );
   }
 
@@ -87,6 +87,51 @@ class S {
       name: 'logIn',
       desc: '',
       args: [gender],
+    );
+  }
+
+  /// `{potato}`
+  String likeCount(int potato) {
+    final NumberFormat potatoNumberFormat = NumberFormat.compact(
+      locale: Intl.getCurrentLocale(),
+    );
+    final String potatoString = potatoNumberFormat.format(potato);
+
+    return Intl.message(
+      '$potatoString',
+      name: 'likeCount',
+      desc: 'Anything you want',
+      args: [potatoString],
+    );
+  }
+
+  /// `{potato}`
+  String commentCount(int potato) {
+    final NumberFormat potatoNumberFormat = NumberFormat.compact(
+      locale: Intl.getCurrentLocale(),
+    );
+    final String potatoString = potatoNumberFormat.format(potato);
+
+    return Intl.message(
+      '$potatoString',
+      name: 'commentCount',
+      desc: 'Anything you want',
+      args: [potatoString],
+    );
+  }
+
+  /// `{value} {value2, plural, =1{Comment} other{Comments}}`
+  String commentTitle(int value, num value2) {
+    final NumberFormat valueNumberFormat = NumberFormat.compact(
+      locale: Intl.getCurrentLocale(),
+    );
+    final String valueString = valueNumberFormat.format(value);
+
+    return Intl.message(
+      '$valueString ${Intl.plural(value2, one: 'Comment', other: 'Comments')}',
+      name: 'commentTitle',
+      desc: 'Anything you want',
+      args: [valueString, value2],
     );
   }
 }
