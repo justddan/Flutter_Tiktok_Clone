@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
@@ -9,16 +8,25 @@ import 'package:tiktok_clone/features/users/user_profile_screen.dart';
 final router = GoRouter(
   routes: [
     GoRoute(
-      path: SignUpScreen.routeName,
+      name: SignUpScreen.routeName,
+      path: SignUpScreen.routeURL,
       builder: (context, state) => const SignUpScreen(),
+      routes: [
+        GoRoute(
+          name: UsernameScreen.routeName,
+          path: UsernameScreen.routeURL,
+          builder: (context, state) => const UsernameScreen(),
+        ),
+      ],
     ),
     GoRoute(
-      path: LoginScreen.routeName,
+      path: LoginScreen.routeURL,
       builder: (context, state) => const LoginScreen(),
     ),
+    /*
     GoRoute(
       name: "username_screen",
-      path: UsernameScreen.routeName,
+      path: UsernameScreen.routeURL,
       pageBuilder: (context, state) {
         return CustomTransitionPage(
           child: const UsernameScreen(),
@@ -34,8 +42,9 @@ final router = GoRouter(
         );
       },
     ),
+    */
     GoRoute(
-      path: EmailScreen.routeName,
+      path: EmailScreen.routeURL,
       builder: (context, state) {
         final args = state.extra as EmailScreenArgs;
         return EmailScreen(username: args.username);

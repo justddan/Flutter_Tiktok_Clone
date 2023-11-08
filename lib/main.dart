@@ -112,12 +112,12 @@ class TikTokApp extends StatelessWidget {
         primaryColor: const Color(0xFFE9435A),
       ),
       /*
-      initialRoute: SignUpScreen.routeName,
+      initialRoute: SignUpScreen.routeURL,
       routes: {
-        SignUpScreen.routeName: (context) => const SignUpScreen(),
-        UsernameScreen.routeName: (context) => const UsernameScreen(),
-        LoginScreen.routeName: (context) => const LoginScreen(),
-        EmailScreen.routeName: (context) => const EmailScreen(),
+        SignUpScreen.routeURL: (context) => const SignUpScreen(),
+        UsernameScreen.routeURL: (context) => const UsernameScreen(),
+        LoginScreen.routeURL: (context) => const LoginScreen(),
+        EmailScreen.routeURL: (context) => const EmailScreen(),
       },
       */
     );
