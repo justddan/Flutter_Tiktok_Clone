@@ -46,6 +46,35 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
   late CameraController _cameraController;
 
   @override
+  void initState() {
+    super.initState();
+    if (!_noCamera) {
+      initPermissions();
+    } else {
+      setState(() {
+        _hasPermission = true;
+      });
+    }
+    WidgetsBinding.instance.addObserver(this);
+    _progressAnimationController.addListener(() {
+      setState(() {});
+    });
+    _progressAnimationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _stopRecording();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _progressAnimationController.dispose();
+    _buttonAnimationController.dispose();
+    _cameraController.dispose();
+    super.dispose();
+  }
+
+  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (!_hasPermission) return;
     if (!_cameraController.value.isInitialized) return;
@@ -53,7 +82,6 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
       _cameraController.dispose();
     } else if (state == AppLifecycleState.resumed) {
       initCamera();
-      setState(() {});
     }
   }
 
@@ -94,27 +122,6 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
       await initCamera();
       setState(() {});
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (!_noCamera) {
-      initPermissions();
-    } else {
-      setState(() {
-        _hasPermission = true;
-      });
-    }
-    WidgetsBinding.instance.addObserver(this);
-    _progressAnimationController.addListener(() {
-      setState(() {});
-    });
-    _progressAnimationController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _stopRecording();
-      }
-    });
   }
 
   Future<void> _toggleSelfieMode() async {
@@ -159,14 +166,6 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
     );
   }
 
-  @override
-  void dispose() {
-    _progressAnimationController.dispose();
-    _buttonAnimationController.dispose();
-    _cameraController.dispose();
-    super.dispose();
-  }
-
   Future<void> _onPickVideoPressed() async {
     final video = await ImagePicker().pickVideo(
       source: ImageSource.gallery,
@@ -192,7 +191,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
       backgroundColor: Colors.black,
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: !_hasPermission || !_cameraController.value.isInitialized
+        child: !_hasPermission
             ? const Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
