@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/common/widgets/main_navigation/main_navigation_screen.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
@@ -27,8 +28,8 @@ final router = GoRouter(
       builder: (context, state) => const InterestsScreen(),
     ),
     GoRoute(
-      name: MainNavigationScreen.routeName,
       path: "/:tab(home|discover|inbox|profile)",
+      name: MainNavigationScreen.routeName,
       builder: (context, state) {
         final tab = state.params["tab"]!;
         return MainNavigationScreen(tab: tab);
@@ -45,19 +46,32 @@ final router = GoRouter(
       builder: (context, state) => const ChatsScreen(),
       routes: [
         GoRoute(
-          path: ChatsScreen.routeURL,
-          name: ChatsScreen.routeName,
+          name: ChatDetailScreen.routeName,
+          path: ChatDetailScreen.routeURL,
           builder: (context, state) {
             final chatId = state.params["chatId"]!;
-            return ChatDetailScreen(chatId: chatId);
+            return ChatDetailScreen(
+              chatId: chatId,
+            );
           },
-        ),
+        )
       ],
     ),
     GoRoute(
       name: VideoRecordingScreen.routeName,
       path: VideoRecordingScreen.routeURL,
-      builder: (context, state) => const VideoRecordingScreen(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        transitionDuration: const Duration(milliseconds: 200),
+        child: const VideoRecordingScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          final position = Tween(begin: const Offset(0, 1), end: Offset.zero)
+              .animate(animation);
+          return SlideTransition(
+            position: position,
+            child: child,
+          );
+        },
+      ),
     ),
     /*
     GoRoute(
