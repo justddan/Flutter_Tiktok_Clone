@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/common/widgets/video_configuration/video_config.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -28,12 +29,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: ListView(
         children: [
+          SwitchListTile(
+            value: VideoConfigData.of(context).autoMute,
+            onChanged: (value) {
+              VideoConfigData.of(context).toggleMuted();
+            },
+            title: const Text("Auto Mute"),
+            subtitle: const Text("Videos will be muted by default."),
+          ),
           /*
           ListTile(
             onTap: () async {
               final date = await showDatePicker(
                 context: context,
-                initialDate: DateTime.now(),
+                initialDate: DateTime.now(),dgor
                 firstDate: DateTime(1998),
                 lastDate: DateTime(2030),
               );
