@@ -12,4 +12,19 @@ class VideoChangeNotifier extends ChangeNotifier {
 final videoChangeNotifier = VideoChangeNotifier();
 */
 
-final videoChangeNotifier = ValueNotifier(false);
+// final videoChangeNotifier = ValueNotifier(false);
+
+class VideoChangeNotifier extends ChangeNotifier {
+  bool isMuted = false;
+  bool isAutoPlay = false;
+
+  void toggleIsMuted() {
+    isMuted = !isMuted;
+    notifyListeners();
+  }
+
+  void toggleIsAutoPlay() {
+    isAutoPlay = !isAutoPlay;
+    notifyListeners();
+  }
+}
