@@ -30,7 +30,7 @@ class _VideoPostState extends State<VideoPost>
 
   bool _isPaused = false;
 
-  bool _autoMute = videoChangeNotifier.autoMute;
+  bool _autoMute = videoChangeNotifier.value;
 
   final Duration _animationDuration = const Duration(milliseconds: 200);
 
@@ -109,7 +109,7 @@ class _VideoPostState extends State<VideoPost>
 
     videoChangeNotifier.addListener(() {
       setState(() {
-        _autoMute = videoChangeNotifier.autoMute;
+        _autoMute = videoChangeNotifier.value;
       });
     });
   }
@@ -201,7 +201,7 @@ class _VideoPostState extends State<VideoPost>
               ),
               onPressed: () {
                 // VideoConfigData.of(context).toggleMuted;
-                videoChangeNotifier.toggleAutoMute();
+                videoChangeNotifier.value = !videoChangeNotifier.value;
               },
             ),
           ),

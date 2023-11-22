@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+/*
 class VideoChangeNotifier extends ChangeNotifier {
   bool autoMute = true;
 
@@ -10,3 +10,6 @@ class VideoChangeNotifier extends ChangeNotifier {
 }
 
 final videoChangeNotifier = VideoChangeNotifier();
+*/
+
+final videoChangeNotifier = ValueNotifier(false);
