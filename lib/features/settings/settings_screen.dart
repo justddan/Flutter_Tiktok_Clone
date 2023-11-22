@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/common/widgets/video_configuration/video_config.dart';
+import 'package:tiktok_clone/common/widgets/video_configuration/video_change_notifier.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -29,6 +29,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: ListView(
         children: [
+          AnimatedBuilder(
+            animation: videoChangeNotifier,
+            builder: (context, child) => SwitchListTile(
+              value: videoChangeNotifier.autoMute,
+              onChanged: (value) {
+                videoChangeNotifier.toggleAutoMute();
+              },
+              title: const Text("Auto Mute"),
+              subtitle: const Text("Videos will be muted by default."),
+            ),
+          ),
+          /*
           SwitchListTile(
             value: VideoConfigData.of(context).autoMute,
             onChanged: (value) {
@@ -37,6 +49,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: const Text("Auto Mute"),
             subtitle: const Text("Videos will be muted by default."),
           ),
+          */
           /*
           ListTile(
             onTap: () async {
