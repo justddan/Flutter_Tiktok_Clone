@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:tiktok_clone/common/widgets/video_configuration/video_change_notifier.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/videos/repo/playback_config_repo.dart';
+import 'package:tiktok_clone/features/videos/view_model/playback_config_vm.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:tiktok_clone/router.dart';
 
@@ -16,11 +18,23 @@ void main() async {
     ],
   );
 
+  final preferences = await SharedPreferences.getInstance();
+  final repository = PlaybackConfigRepository(preferences);
+
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle.dark,
   );
 
-  runApp(const TikTokApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => PlaybackConfigViewModel(repository),
+        )
+      ],
+      child: const TikTokApp(),
+    ),
+  );
 }
 
 class TikTokApp extends StatelessWidget {
@@ -29,106 +43,99 @@ class TikTokApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // S.load(const Locale("en"));
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => VideoChangeNotifier(),
-        ),
+    return MaterialApp.router(
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
+      title: 'TikTok Clone',
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
       ],
-      child: MaterialApp.router(
-        routerConfig: router,
-        debugShowCheckedModeBanner: false,
-        title: 'TikTok Clone',
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale("en"),
-          Locale("ko"),
-        ],
-        themeMode: ThemeMode.system,
-        theme: ThemeData(
-          // useMaterial3: true,
-          brightness: Brightness.light,
-          textTheme: Typography.blackMountainView,
-          scaffoldBackgroundColor: Colors.white,
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Color(0xFFE9435A),
-          ),
-          splashColor: Colors.transparent,
-          bottomAppBarTheme: BottomAppBarTheme(
-            color: Colors.grey.shade50,
-          ),
-          appBarTheme: const AppBarTheme(
-            foregroundColor: Colors.black,
-            backgroundColor: Colors.white,
-            surfaceTintColor: Colors.white,
-            elevation: 0,
-            centerTitle: true,
-            titleTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: Sizes.size16 + Sizes.size2,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          tabBarTheme: TabBarTheme(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade500,
-            indicatorColor: Colors.black,
-          ),
-          primaryColor: const Color(0xFFE9435A),
-          listTileTheme: const ListTileThemeData(
-            iconColor: Colors.black,
+      supportedLocales: const [
+        Locale("en"),
+        Locale("ko"),
+      ],
+      themeMode: ThemeMode.system,
+      theme: ThemeData(
+        // useMaterial3: true,
+        brightness: Brightness.light,
+        textTheme: Typography.blackMountainView,
+        scaffoldBackgroundColor: Colors.white,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+        ),
+        splashColor: Colors.transparent,
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade50,
+        ),
+        appBarTheme: const AppBarTheme(
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          elevation: 0,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          textTheme: Typography.whiteMountainView,
-          scaffoldBackgroundColor: Colors.black,
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Color(0xFFE9435A),
-          ),
-          splashColor: Colors.transparent,
-          bottomAppBarTheme: BottomAppBarTheme(
-            color: Colors.grey.shade900,
-          ),
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.grey.shade900,
-            surfaceTintColor: Colors.grey.shade900,
-            elevation: 0,
-            centerTitle: true,
-            titleTextStyle: const TextStyle(
-              color: Colors.white,
-              fontSize: Sizes.size16 + Sizes.size2,
-              fontWeight: FontWeight.w600,
-            ),
-            actionsIconTheme: IconThemeData(
-              color: Colors.grey.shade100,
-            ),
-            iconTheme: IconThemeData(
-              color: Colors.grey.shade100,
-            ),
-          ),
-          tabBarTheme: TabBarTheme(
-            labelColor: Colors.white,
-            indicatorColor: Colors.white,
-            unselectedLabelColor: Colors.grey.shade700,
-          ),
-          primaryColor: const Color(0xFFE9435A),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.black,
         ),
-        /*
-        initialRoute: SignUpScreen.routeURL,
-        routes: {
-          SignUpScreen.routeURL: (context) => const SignUpScreen(),
-          UsernameScreen.routeURL: (context) => const UsernameScreen(),
-          LoginScreen.routeURL: (context) => const LoginScreen(),
-          EmailScreen.routeURL: (context) => const EmailScreen(),
-        },
-        */
+        primaryColor: const Color(0xFFE9435A),
+        listTileTheme: const ListTileThemeData(
+          iconColor: Colors.black,
+        ),
       ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        textTheme: Typography.whiteMountainView,
+        scaffoldBackgroundColor: Colors.black,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xFFE9435A),
+        ),
+        splashColor: Colors.transparent,
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade900,
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey.shade900,
+          surfaceTintColor: Colors.grey.shade900,
+          elevation: 0,
+          centerTitle: true,
+          titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
+          ),
+          actionsIconTheme: IconThemeData(
+            color: Colors.grey.shade100,
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.grey.shade100,
+          ),
+        ),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.white,
+          indicatorColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade700,
+        ),
+        primaryColor: const Color(0xFFE9435A),
+      ),
+      /*
+      initialRoute: SignUpScreen.routeURL,
+      routes: {
+        SignUpScreen.routeURL: (context) => const SignUpScreen(),
+        UsernameScreen.routeURL: (context) => const UsernameScreen(),
+        LoginScreen.routeURL: (context) => const LoginScreen(),
+        EmailScreen.routeURL: (context) => const EmailScreen(),
+      },
+      */
     );
   }
 }
