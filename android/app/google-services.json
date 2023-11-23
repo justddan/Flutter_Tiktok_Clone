@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "217008638299",
+    "project_id": "justddan-tiktok",
+    "storage_bucket": "justddan-tiktok.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217008638299:android:b4e51ce7922363bb75b27e",
+        "android_client_info": {
+          "package_name": "com.example.tiktok_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIv692ho1QbX8Aty9CylzoBXQrdLFTxvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
