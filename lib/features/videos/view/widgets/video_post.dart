@@ -1,15 +1,17 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/videos/view/widgets/video_button.dart';
 import 'package:tiktok_clone/features/videos/view/widgets/video_comments.dart';
+import 'package:tiktok_clone/features/videos/view_model/playback_config_vm.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class VideoPost extends StatefulWidget {
+class VideoPost extends ConsumerStatefulWidget {
   final Function onVideoFinished;
   final int index;
 
@@ -20,10 +22,10 @@ class VideoPost extends StatefulWidget {
   });
 
   @override
-  State<VideoPost> createState() => _VideoPostState();
+  VideoPostState createState() => VideoPostState();
 }
 
-class _VideoPostState extends State<VideoPost>
+class VideoPostState extends ConsumerState<VideoPost>
     with SingleTickerProviderStateMixin {
   late final VideoPlayerController _videoPlayerController;
 
@@ -94,7 +96,7 @@ class _VideoPostState extends State<VideoPost>
         !_videoPlayerController.value.isPlaying &&
         !_isPaused) {
       // final autoplay = context.read<PlaybackConfigViewModel>().autoplay;
-      if (false) {
+      if (ref.watch(PlaybackConfigProvider).autoplay) {
         _videoPlayerController.play();
       }
     }
@@ -132,7 +134,7 @@ class _VideoPostState extends State<VideoPost>
   void _onPlaybackConfigChanged() {
     if (!mounted) return;
     // final muted = context.read<PlaybackConfigViewModel>().muted;
-    if (false) {
+    if (ref.watch(PlaybackConfigProvider).muted) {
       _videoPlayerController.setVolume(0);
     } else {
       _videoPlayerController.setVolume(1);
@@ -211,8 +213,8 @@ class _VideoPostState extends State<VideoPost>
             left: 20,
             top: 40,
             child: IconButton(
-              icon: const FaIcon(
-                false
+              icon: FaIcon(
+                ref.watch(PlaybackConfigProvider).muted
                     // context.watch<PlaybackConfigViewModel>().muted
                     // context.watch<VideoChangeNotifier>().isMuted
                     // VideoConfigData.of(context).autoMute
@@ -227,6 +229,7 @@ class _VideoPostState extends State<VideoPost>
                 // context
                 //     .read<PlaybackConfigViewModel>()
                 //     .setMuted(!context.read<PlaybackConfigViewModel>().muted);
+                _onPlaybackConfigChanged();
               },
             ),
           ),

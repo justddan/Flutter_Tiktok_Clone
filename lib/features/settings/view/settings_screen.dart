@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tiktok_clone/features/videos/view_model/playback_config_vm.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
-  @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
   /*
   bool _notification = false;
 
@@ -19,9 +16,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
   */
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),
@@ -29,14 +25,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: ListView(
         children: [
           SwitchListTile(
-            value: false,
-            onChanged: (value) => () {},
+            value: ref.watch(PlaybackConfigProvider).muted,
+            onChanged: (value) => () {
+              ref.read(PlaybackConfigProvider.notifier).setMuted(value);
+            },
             title: const Text("Auto Mute"),
             subtitle: const Text("Videos will be muted by default."),
           ),
           SwitchListTile(
-            value: false,
-            onChanged: (value) => () {},
+            value: ref.watch(PlaybackConfigProvider).autoplay,
+            onChanged: (value) => () {
+              ref.read(PlaybackConfigProvider.notifier).setAutoplay(value);
+            },
             title: const Text("Auto Play"),
             subtitle: const Text("Videos will be played by default."),
           ),
