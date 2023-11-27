@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tiktok_clone/features/authentication/repo/authentication_repo.dart';
 import 'package:tiktok_clone/features/videos/view_model/playback_config_vm.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -39,6 +41,33 @@ class SettingsScreen extends ConsumerWidget {
             },
             title: const Text("Auto Play"),
             subtitle: const Text("Videos will be played by default."),
+          ),
+          ListTile(
+            title: const Text("Log out (iOS)"),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                  title: const Text("Are you sure?"),
+                  content: const Text("Plx dont go"),
+                  actions: [
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text("No"),
+                    ),
+                    CupertinoDialogAction(
+                      onPressed: () {
+                        ref.read(authRepo).signOut();
+                        context.go("/");
+                      },
+                      isDestructiveAction: true,
+                      child: const Text("Yes"),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
           /*
           SwitchListTile(
