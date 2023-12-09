@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/common/widgets/main_navigation/main_navigation_screen.dart';
@@ -12,7 +12,7 @@ import 'package:tiktok_clone/features/onboarding/view/interests_screen.dart';
 import 'package:tiktok_clone/features/videos/view/video_recording_screen.dart';
 
 final routerProvider = Provider((ref) {
-  ref.watch(authState);
+//  ref.watch(authState);
   return GoRouter(
     initialLocation: "/home",
     redirect: (context, state) {
@@ -72,74 +72,23 @@ final routerProvider = Provider((ref) {
         ],
       ),
       GoRoute(
-        name: VideoRecordingScreen.routeName,
         path: VideoRecordingScreen.routeURL,
+        name: VideoRecordingScreen.routeName,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: const Duration(milliseconds: 200),
           child: const VideoRecordingScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            final position = Tween(begin: const Offset(0, 1), end: Offset.zero)
-                .animate(animation);
+            final position = Tween(
+              begin: const Offset(0, 1),
+              end: Offset.zero,
+            ).animate(animation);
             return SlideTransition(
               position: position,
               child: child,
             );
           },
         ),
-      ),
-      /*
-    GoRoute(
-      name: SignUpScreen.routeName,
-      path: SignUpScreen.routeURL,
-      builder: (context, state) => const SignUpScreen(),
-      routes: [
-        GoRoute(
-          name: UsernameScreen.routeName,
-          path: UsernameScreen.routeURL,
-          builder: (context, state) => const UsernameScreen(),
-        ),
-      ],
-    ),
-    GoRoute(
-      path: LoginScreen.routeURL,
-      builder: (context, state) => const LoginScreen(),
-    ),
-    /*
-    GoRoute(
-      name: "username_screen",
-      path: UsernameScreen.routeURL,
-      pageBuilder: (context, state) {
-        return CustomTransitionPage(
-          child: const UsernameScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(
-              opacity: animation,
-              child: ScaleTransition(
-                scale: animation,
-                child: child,
-              ),
-            );
-          },
-        );
-      },
-    ),
-    */
-    GoRoute(
-      path: EmailScreen.routeURL,
-      builder: (context, state) {
-        final args = state.extra as EmailScreenArgs;
-        return EmailScreen(username: args.username);
-      },
-    ),
-    GoRoute(
-      path: "/users/:username",
-      builder: (context, state) {
-        final username = state.params["username"];
-        final tab = state.queryParams["show"];
-        return UserProfileScreen(username: username!, tab: tab!);
-      },
-    ),
-    */
+      )
     ],
   );
 });

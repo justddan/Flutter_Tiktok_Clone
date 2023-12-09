@@ -33,14 +33,14 @@ class BirthdayScreenState extends ConsumerState<BirthdayScreen> {
     FocusScope.of(context).unfocus();
   }
 
-  void _onNextTap() async {
+  void _onNextTap() {
     final state = ref.read(signUpForm.notifier).state;
     ref.read(signUpForm.notifier).state = {
       "birthday": _birthdayController.text,
       ...state,
     };
 
-    await ref.read(signUpProvider.notifier).signUp(context);
+    ref.read(signUpProvider.notifier).signUp(context);
     // context.goNamed(InterestsScreen.routeName);
   }
 

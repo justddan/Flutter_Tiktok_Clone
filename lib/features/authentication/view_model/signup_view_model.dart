@@ -20,10 +20,6 @@ class SignUpViewModel extends AsyncNotifier<void> {
     state = const AsyncValue.loading();
     final form = ref.read(signUpForm);
     final users = ref.read(usersProvider.notifier);
-    /*
-    await _authRepo.signUp(form["email"], form["password"]);
-    state = AsyncValue.data(null);
-    */
     state = await AsyncValue.guard(() async {
       final userCredential = await _authRepo.signUp(
         form["email"],
@@ -39,7 +35,7 @@ class SignUpViewModel extends AsyncNotifier<void> {
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
     } else {
-      context.goNamed(InterestsScreen.routeName);
+      context.go(InterestsScreen.routeURL);
     }
   }
 }
