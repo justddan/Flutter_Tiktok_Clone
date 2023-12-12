@@ -8,5 +8,13 @@ export const onVideoCreated = functions.firestore.document('videos/{videoId}').o
   const video = snapshot.data();
   await spawn('ffmpeg', ['-i', video.fileUrl, '-ss', '00:00:01.000', '-vframes', '1', '-vf', 'scale=150:-1', `/tmp/${snapshot.id}.jpg`]);
   const storage = admin.storage();
-  storage.bucket().upload(`/tmp/${snapshot.id}.jpg`, { destination: `thumbnails/${snapshot.id}.jpg` });
+  const [file, _] = await storage.bucket().upload(`/tmp/${snapshot.id}.jpg`, { destination: `thumbnails/${snapshot.id}.jpg` });
+  await file.makePublic();
+  await snapshot.ref.update({ thumbnalUrl: file.publicUrl() });
+
+  const db = admin.firestore();
+  db.collection('users').doc(video.cretorUid).collection('videos').doc(snapshot.id).set({
+    thumbnailUrl: file.publicUrl(),
+    videoId: snapshot.id,
+  });
 });
