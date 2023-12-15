@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/repo/authentication_repo.dart';
+import 'package:tiktok_clone/features/inbox/view_model/message_view_model.dart';
 
-class ChatDetailScreen extends StatefulWidget {
+class ChatDetailScreen extends ConsumerStatefulWidget {
   static const String routeName = "chatDetail";
-  static const String routeURL = ":id";
+  static const String routeURL = ":chatId";
 
   final String chatId;
 
@@ -15,12 +18,24 @@ class ChatDetailScreen extends StatefulWidget {
   });
 
   @override
-  State<ChatDetailScreen> createState() => _ChatDetailScreenState();
+  ConsumerState<ChatDetailScreen> createState() => _ChatDetailScreenState();
 }
 
-class _ChatDetailScreenState extends State<ChatDetailScreen> {
+class _ChatDetailScreenState extends ConsumerState<ChatDetailScreen> {
+  final TextEditingController _editingController = TextEditingController();
+
+  void _onSendPress() {
+    final text = _editingController.text;
+    if (text == "") {
+      return;
+    }
+    ref.read(messagesProvider.notifier).sendMessage(text);
+    _editingController.text = "";
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(messagesProvider).isLoading;
     return Scaffold(
       appBar: AppBar(
         title: const ListTile(
@@ -57,48 +72,68 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
       ),
       body: Stack(
         children: [
-          ListView.separated(
-            padding: const EdgeInsets.symmetric(
-              vertical: Sizes.size20,
-              horizontal: Sizes.size14,
-            ),
-            itemBuilder: (context, index) {
-              final isMine = index % 2 == 0;
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment:
-                    isMine ? MainAxisAlignment.end : MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(Sizes.size14),
-                    decoration: BoxDecoration(
-                      color:
-                          isMine ? Colors.blue : Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: const Radius.circular(Sizes.size20),
-                        topRight: const Radius.circular(Sizes.size20),
-                        bottomLeft: Radius.circular(
-                          isMine ? Sizes.size20 : Sizes.size5,
-                        ),
-                        bottomRight: Radius.circular(
-                          isMine ? Sizes.size5 : Sizes.size20,
-                        ),
-                      ),
+          ref.watch(chatProvider).when(
+                data: (data) {
+                  return ListView.separated(
+                    reverse: true,
+                    padding: EdgeInsets.only(
+                      top: Sizes.size20,
+                      bottom:
+                          MediaQuery.of(context).padding.bottom + Sizes.size96,
+                      left: Sizes.size14,
+                      right: Sizes.size14,
                     ),
-                    child: const Text(
-                      "This is a message",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: Sizes.size16,
-                      ),
-                    ),
+                    itemBuilder: (context, index) {
+                      final message = data[index];
+                      final isMine =
+                          message.userId == ref.watch(authRepo).user!.uid;
+                      return Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: isMine
+                            ? MainAxisAlignment.end
+                            : MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(Sizes.size14),
+                            decoration: BoxDecoration(
+                              color: isMine
+                                  ? Colors.blue
+                                  : Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.only(
+                                topLeft: const Radius.circular(Sizes.size20),
+                                topRight: const Radius.circular(Sizes.size20),
+                                bottomLeft: Radius.circular(
+                                  isMine ? Sizes.size20 : Sizes.size5,
+                                ),
+                                bottomRight: Radius.circular(
+                                  isMine ? Sizes.size5 : Sizes.size20,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              message.text,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: Sizes.size16,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                    separatorBuilder: (context, index) => Gaps.v10,
+                    itemCount: data.length,
+                  );
+                },
+                error: (error, stackTrace) => Center(
+                  child: Text(
+                    error.toString(),
                   ),
-                ],
-              );
-            },
-            separatorBuilder: (context, index) => Gaps.v10,
-            itemCount: 10,
-          ),
+                ),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
           Positioned(
             bottom: 0,
             width: MediaQuery.of(context).size.width,
@@ -111,6 +146,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                 children: [
                   Expanded(
                     child: TextField(
+                      controller: _editingController,
                       textInputAction: TextInputAction.send,
                       keyboardType: TextInputType.emailAddress,
                       autocorrect: false,
@@ -149,9 +185,14 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                       shape: BoxShape.circle,
                       color: Colors.grey.shade400,
                     ),
-                    child: const FaIcon(
-                      FontAwesomeIcons.solidPaperPlane,
-                      color: Colors.white,
+                    child: IconButton(
+                      onPressed: isLoading ? null : _onSendPress,
+                      icon: FaIcon(
+                        isLoading
+                            ? FontAwesomeIcons.hourglass
+                            : FontAwesomeIcons.solidPaperPlane,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],

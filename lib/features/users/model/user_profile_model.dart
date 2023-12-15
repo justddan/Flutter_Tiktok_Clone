@@ -5,7 +5,7 @@ class UserProfileModel {
   final String bio;
   final String link;
   final String birthday;
-  final bool hasAvatar;
+  // final bool hasAvatar;
 
   UserProfileModel({
     required this.uid,
@@ -14,7 +14,7 @@ class UserProfileModel {
     required this.bio,
     required this.link,
     required this.birthday,
-    required this.hasAvatar,
+    // required this.hasAvatar,
   });
 
   UserProfileModel.empty()
@@ -23,8 +23,8 @@ class UserProfileModel {
         name = "",
         bio = "",
         link = "",
-        birthday = "",
-        hasAvatar = false;
+        // hasAvatar = false,
+        birthday = "";
 
   UserProfileModel.fromJson(Map<String, dynamic> json)
       : uid = json["uid"],
@@ -32,8 +32,8 @@ class UserProfileModel {
         name = json["name"],
         bio = json["bio"],
         link = json["link"],
-        birthday = json["birthday"],
-        hasAvatar = json["hasAvatar"];
+        // hasAvatar = json["hasAvatar"],
+        birthday = json["birthday"];
 
   Map<String, String> toJson() {
     return {
@@ -62,7 +62,7 @@ class UserProfileModel {
       bio: bio ?? this.bio,
       link: link ?? this.link,
       birthday: birthday ?? this.birthday,
-      hasAvatar: hasAvatar ?? this.hasAvatar,
+      // hasAvatar: hasAvatar ?? this.hasAvatar,
     );
   }
 }
