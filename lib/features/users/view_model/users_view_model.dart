@@ -24,6 +24,17 @@ class UsersViewModel extends AsyncNotifier<UserProfileModel> {
     return UserProfileModel.empty();
   }
 
+  Future<void> updateProfile(String bio, String link) async {
+    state = AsyncValue.data(state.value!.copyWith(
+      bio: bio,
+      link: link,
+    ));
+    await _usersRepository.updateUser(_authenticationRepository.user!.uid, {
+      "bio": bio,
+      "link": link,
+    });
+  }
+
   Future<void> createProfile({
     required UserCredential credential,
     String email = "",
