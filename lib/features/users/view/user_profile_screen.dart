@@ -6,6 +6,7 @@ import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/settings/view/settings_screen.dart';
 import 'package:tiktok_clone/features/users/view/widgets/avatar.dart';
 import 'package:tiktok_clone/features/users/view/widgets/persistent_tab_bar.dart';
+import 'package:tiktok_clone/features/users/view/widgets/user_profile_info.dart';
 import 'package:tiktok_clone/features/users/view_model/users_view_model.dart';
 
 class UserProfileScreen extends ConsumerStatefulWidget {
@@ -94,23 +95,9 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Column(
-                                      children: [
-                                        const Text(
-                                          "97",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize:
-                                                  Sizes.size16 + Sizes.size2),
-                                        ),
-                                        Gaps.v3,
-                                        Text(
-                                          "Following",
-                                          style: TextStyle(
-                                            color: Colors.grey.shade500,
-                                          ),
-                                        ),
-                                      ],
+                                    const UserProfileInfo(
+                                      amount: "97",
+                                      title: "Following",
                                     ),
                                     VerticalDivider(
                                       width: Sizes.size32,
@@ -119,23 +106,9 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                                       indent: Sizes.size14,
                                       endIndent: Sizes.size14,
                                     ),
-                                    Column(
-                                      children: [
-                                        const Text(
-                                          "10.5M",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize:
-                                                  Sizes.size16 + Sizes.size2),
-                                        ),
-                                        Gaps.v3,
-                                        Text(
-                                          "Followers",
-                                          style: TextStyle(
-                                            color: Colors.grey.shade500,
-                                          ),
-                                        ),
-                                      ],
+                                    const UserProfileInfo(
+                                      amount: "10.5M",
+                                      title: "Followers",
                                     ),
                                     VerticalDivider(
                                       width: Sizes.size32,
@@ -144,23 +117,9 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                                       indent: Sizes.size14,
                                       endIndent: Sizes.size14,
                                     ),
-                                    Column(
-                                      children: [
-                                        const Text(
-                                          "194.3M",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize:
-                                                  Sizes.size16 + Sizes.size2),
-                                        ),
-                                        Gaps.v3,
-                                        Text(
-                                          "Likes",
-                                          style: TextStyle(
-                                            color: Colors.grey.shade500,
-                                          ),
-                                        ),
-                                      ],
+                                    const UserProfileInfo(
+                                      amount: "194.3M",
+                                      title: "Likes",
                                     ),
                                   ],
                                 ),
