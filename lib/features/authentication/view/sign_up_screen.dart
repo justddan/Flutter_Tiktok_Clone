@@ -92,40 +92,35 @@ class SignUpScreen extends ConsumerWidget {
                   ),
                   Gaps.v40,
                   if (orientation == Orientation.portrait) ...[
-                    GestureDetector(
+                    AuthButton(
                       onTap: () => _onEmailTap(context),
-                      child: const AuthButton(
-                        icon: FaIcon(FontAwesomeIcons.user),
-                        text: "Use phone or email",
-                      ),
+                      icon: const FaIcon(FontAwesomeIcons.user),
+                      text: "Use phone or email",
                     ),
                     Gaps.v16,
-                    GestureDetector(
+                    AuthButton(
                       onTap: () => ref
                           .read(socialAuthProvider.notifier)
                           .githubSignIn(context),
-                      child: const AuthButton(
-                        icon: FaIcon(FontAwesomeIcons.github),
-                        text: "Continue with Github",
-                      ),
+                      icon: const FaIcon(FontAwesomeIcons.github),
+                      text: "Continue with Github",
                     ),
                   ],
                   if (orientation == Orientation.landscape)
                     Row(
                       children: [
                         Expanded(
-                          child: GestureDetector(
+                          child: AuthButton(
                             onTap: () => _onEmailTap(context),
-                            child: const AuthButton(
-                              icon: FaIcon(FontAwesomeIcons.user),
-                              text: "Use phone or email",
-                            ),
+                            icon: const FaIcon(FontAwesomeIcons.user),
+                            text: "Use phone or email",
                           ),
                         ),
                         Gaps.h16,
-                        const Expanded(
+                        Expanded(
                           child: AuthButton(
-                            icon: FaIcon(FontAwesomeIcons.apple),
+                            onTap: () {},
+                            icon: const FaIcon(FontAwesomeIcons.apple),
                             text: "Continue with Apple",
                           ),
                         ),

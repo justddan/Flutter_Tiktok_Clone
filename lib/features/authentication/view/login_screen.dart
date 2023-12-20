@@ -56,21 +56,17 @@ class LoginScreen extends ConsumerWidget {
                 ),
               ),
               Gaps.v40,
-              GestureDetector(
+              AuthButton(
                 onTap: () => _onEmailLoginTap(context),
-                child: const AuthButton(
-                  icon: FaIcon(FontAwesomeIcons.user),
-                  text: "Use email & password",
-                ),
+                icon: const FaIcon(FontAwesomeIcons.user),
+                text: "Use email & password",
               ),
               Gaps.v16,
-              GestureDetector(
+              AuthButton(
                 onTap: () =>
                     ref.read(socialAuthProvider.notifier).githubSignIn(context),
-                child: const AuthButton(
-                  icon: FaIcon(FontAwesomeIcons.github),
-                  text: "Continue with Github",
-                ),
+                icon: const FaIcon(FontAwesomeIcons.github),
+                text: "Continue with Github",
               ),
             ],
           ),
