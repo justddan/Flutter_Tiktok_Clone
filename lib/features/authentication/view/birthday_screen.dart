@@ -20,7 +20,9 @@ class BirthdayScreenState extends ConsumerState<BirthdayScreen> {
   @override
   void initState() {
     super.initState();
-    _setTextFieldDate(initialDate);
+    DateTime newDate =
+        DateTime(initialDate.year - 12, initialDate.month, initialDate.day);
+    _setTextFieldDate(newDate);
   }
 
   @override
