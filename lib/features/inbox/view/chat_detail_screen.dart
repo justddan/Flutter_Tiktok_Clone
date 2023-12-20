@@ -38,21 +38,44 @@ class _ChatDetailScreenState extends ConsumerState<ChatDetailScreen> {
     final isLoading = ref.watch(messagesProvider).isLoading;
     return Scaffold(
       appBar: AppBar(
-        title: const ListTile(
+        title: ListTile(
           contentPadding: EdgeInsets.zero,
           horizontalTitleGap: Sizes.size8,
-          leading: CircleAvatar(
-            radius: Sizes.size20 + Sizes.size2,
-            child: Text("니꼬"),
+          leading: Stack(
+            children: [
+              const CircleAvatar(
+                radius: Sizes.size24 + Sizes.size2,
+                child: Text("니꼬"),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(2),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Container(
+                    width: 13,
+                    height: 13,
+                    decoration: const BoxDecoration(
+                      color: Colors.lightGreen,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-          title: Text(
+          title: const Text(
             "니꼬",
             style: TextStyle(
               fontWeight: FontWeight.w600,
             ),
           ),
-          subtitle: Text("Active now"),
-          trailing: Row(
+          subtitle: const Text("Active now"),
+          trailing: const Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               FaIcon(
