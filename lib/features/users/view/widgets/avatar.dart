@@ -50,7 +50,7 @@ class Avartar extends ConsumerWidget {
               foregroundColor: Colors.blue,
               foregroundImage: hasAvatar
                   ? NetworkImage(
-                      "https://firebasestorage.googleapis.com/v0/b/tiktok-abc-xyz.appspot.com/o/avatars%2F$uid?alt=media&haha=${DateTime.now().toString()}",
+                      "https://firebasestorage.googleapis.com/v0/b/justddan-tiktok.appspot.com/o/avatars%2F$uid?alt=media&haha=${DateTime.now().toString()}",
                     )
                   : null,
               child: Text(name),

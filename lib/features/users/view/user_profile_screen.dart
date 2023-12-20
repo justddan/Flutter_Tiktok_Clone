@@ -85,7 +85,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                               Avartar(
                                 name: data.name,
                                 uid: data.uid,
-                                hasAvatar: false,
+                                hasAvatar: data.hasAvatar,
                               ),
                               Gaps.v20,
                               Row(
@@ -168,9 +168,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                                   horizontal: Sizes.size32,
                                 ),
                                 child: Text(
-                                  data.bio != "undefined"
-                                      ? data.bio
-                                      : "All highlights and where to watch live matches on FIFA+ I wonder how it would loook",
+                                  data.bio,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -184,9 +182,9 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                                   ),
                                   Gaps.h4,
                                   Text(
-                                    data.link != "undefined"
+                                    data.link.isNotEmpty
                                         ? data.link
-                                        : "https://nomadcoders.co",
+                                        : "No link",
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                     ),

@@ -25,6 +25,7 @@ class UsersViewModel extends AsyncNotifier<UserProfileModel> {
   }
 
   Future<void> updateProfile(String bio, String link) async {
+    if (state.value == null) return;
     state = AsyncValue.data(state.value!.copyWith(
       bio: bio,
       link: link,
@@ -46,9 +47,9 @@ class UsersViewModel extends AsyncNotifier<UserProfileModel> {
     }
     state = const AsyncValue.loading();
     final profile = UserProfileModel(
-      // hasAvatar: false,
-      bio: "undefined",
-      link: "undefined",
+      hasAvatar: false,
+      bio: "",
+      link: "",
       uid: credential.user!.uid,
       email: credential.user!.email ?? email,
       name: credential.user!.displayName ?? name,
@@ -59,7 +60,7 @@ class UsersViewModel extends AsyncNotifier<UserProfileModel> {
   }
 
   Future<void> onAvatarUpload() async {
-    if (state.value != null) return;
+    if (state.value == null) return;
     state = AsyncValue.data(state.value!.copyWith(hasAvatar: true));
     await _usersRepository.updateUser(state.value!.uid, {"hasAvatar": true});
   }
